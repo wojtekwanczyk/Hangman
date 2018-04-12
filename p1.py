@@ -1,14 +1,23 @@
-import sys
+import sys, os, errno
 from random import randint
 
 words = []
+filename = ""
+
+# check if first argument is given (IndexError)
+try:
+    filename = sys.argv[1]
+except IndexError as e:
+    print("Give name of file as argument!\n" + str(e))
+    exit(1)
 
 # open file given in command line and convert to list
 try:
-    words = list(open(sys.argv[1]))
+    words = list(open(filename))
 except FileNotFoundError as e:
     print("Error while opening the file!\n" + str(e))
     exit(1)
+
 
 # take random word from the list
 original_word = words[randint(0, len(words) - 1)]
@@ -20,7 +29,7 @@ original_word = original_word[:-1]
 guessed_word = list("_" * len(original_word))
 guessed_word_str = "".join(guessed_word)
 
-print("Guess the secret or I will hang you!\n"
+print("Guess the word or I will hang you!\n"
       "Remember, you can make only 3 mistakes\n"
       "Your first letter?")
 
@@ -30,7 +39,7 @@ used_letters = ""
 
 while mistake_count < 4 and (original_word != guessed_word_str):
 
-    # writing guessed word in proper format
+    # writing guessed word in proper format - print uses new line
     sys.stdout.write("\nWord: ")
     for c in guessed_word_str:
         sys.stdout.write(c + " ")
