@@ -1,4 +1,4 @@
-import sys, os, errno
+import sys
 from random import randint
 
 words = []
