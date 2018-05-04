@@ -43,7 +43,7 @@ while mistake_count < 4 and (original_word != guessed_word_str):
     sys.stdout.write("\nWord: ")
     for c in guessed_word_str:
         sys.stdout.write(c + " ")
-    print("")
+    print("plplp", end = "")
 
     # get input
     letter = input().lower()
